@@ -2,6 +2,12 @@ const deps = require("./package.json").dependencies;
 
 module.exports = {
   name: "todo",
+  remotes: {
+    host: "host@http://localhost:3000/remoteEntry.js"
+  },
+  exposes: {
+    "./components": "./src/components"
+  },
   filename: "remoteEntry.js",
   shared: {
     ...deps,

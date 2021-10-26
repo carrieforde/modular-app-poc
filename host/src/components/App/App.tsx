@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Route, Router, Switch } from 'react-router-dom';
+// @ts-ignore
+import { TodoApp } from 'todo/components';
 import { history } from '../../services';
-import Initialized from '../Initialized/Initialized';
 import s from './App.module.css';
 
 function App() {
@@ -20,12 +21,10 @@ function App() {
           <Switch>
             <Route exact path="/">
               This is the host application
-
-              <Initialized />
             </Route>
 
             <Route path="/todo">
-              ToDo goes here
+              <TodoApp />
             </Route>
           </Switch>
       </main>
