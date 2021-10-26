@@ -1,0 +1,27 @@
+.site {
+    padding: 24px;
+}
+
+.siteHeader {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.siteHeader p {
+    margin: 0;
+}
+
+.siteNav {
+    display: inline-flex;
+}
+
+.siteNav a + a {
+    margin-left: 12px;
+}
+
+.main {
+    margin: 0 auto;
+    max-width: 700px;
+}
