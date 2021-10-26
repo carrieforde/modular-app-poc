@@ -1,10 +1,8 @@
 import React from 'react';
-import {Router, Switch, Route, Link} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import { Link, Route, Router, Switch } from 'react-router-dom';
+import { history } from '../../services';
+import Initialized from '../Initialized/Initialized';
 import s from './App.module.css';
-
-// TODO: Expose this!
-const history = createBrowserHistory();
 
 function App() {
   return (
@@ -22,6 +20,8 @@ function App() {
           <Switch>
             <Route exact path="/">
               This is the host application
+
+              <Initialized />
             </Route>
 
             <Route path="/todo">
