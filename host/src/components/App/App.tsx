@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link, Route, Router, Switch } from 'react-router-dom';
+import { Link, Redirect, Route, Router, Switch } from 'react-router-dom';
 // @ts-ignore
 import { TodoApp } from 'todo/components';
+import { Forbidden, Login } from '..';
+import { useAuth } from '../../redux';
 import { history } from '../../services';
 import s from './App.module.css';
 
 function App() {
+  const auth = useAuth();
+
   return (
     <Router history={history}>
       <div className={s.site}>
@@ -23,8 +27,12 @@ function App() {
               This is the host application
             </Route>
 
-            <Route path="/todo">
-              <TodoApp />
+            <Route path="/todo" render={({location}) => auth ? <TodoApp /> : <Redirect to={{pathname: "/login", state: {from:location}}} />} />
+
+            <Route path="/login">
+              
+              <Forbidden />
+                <Login />
             </Route>
           </Switch>
       </main>

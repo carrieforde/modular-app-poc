@@ -1,5 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { store } from "../services";
+import { getState, injectNewReducer, subscribe } from "../services/store";
 
 const STORE_KEY = "initialized"
 
@@ -10,18 +11,13 @@ const reducers = {
 }
 
 export const useInitialized = (): string => {
-    const [state, setState] = useState(store.getState()[STORE_KEY]);
+    const [state, setState] = useState(getState(STORE_KEY));
 
-    useLayoutEffect(() => {
-        let lastState = store.getState()[STORE_KEY];
-
-    return store.subscribe(() => lastState !== store.getState()[STORE_KEY] && setState((lastState = store.getState()[STORE_KEY])))
-    }, []);
+    useLayoutEffect(() => subscribe(STORE_KEY, setState), []);
 
     return state;
 }
 
 export const setInitTime = () => store.dispatch({type: "setInitTime"});
 
-// @ts-ignore
-store.injectReducer(STORE_KEY, (state = initialState, {type, payload}) => reducers[type] ? reducers[type](state, payload) : state);
+injectNewReducer(STORE_KEY, initialState, reducers)

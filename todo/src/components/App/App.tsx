@@ -7,7 +7,8 @@ import { Route, Router, Switch } from 'react-router';
 import { Link } from 'react-router-dom';
 import ToDo from '../ToDo/List';
 
-
+// @ts-ignore
+import {Initialized} from 'host/Initialized';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
       </nav>
 
      {initTime && <pre>
-        The ToDo app was initialized at: <code>{initTime}</code>
+        The To Do app init instancing using only the <code>useInitialized</code> hook: {initTime}
       </pre>}
 
 
@@ -40,6 +41,8 @@ function App() {
 
       <Route path={`${basePath}/completed`}>
         These are completed todo items.
+
+        Let's double check that store init time! This uses the host <code>Initialized</code> component: <Initialized />
       </Route>
       </Switch>
     </Router>
